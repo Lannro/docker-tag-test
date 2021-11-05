@@ -39,15 +39,13 @@ jobs:
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
       - name: Build and push
-        id: docker_build       
-        env:
-          RELEASE_VERSION: ${{ steps.tag.outputs.tag }}
+        id: docker_build
         uses: docker/build-push-action@v2
         with:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: tcinkant/docker-tag-test:$RELEASE_VERSION
+          tags: tcinkant/docker-tag-test:$${{ steps.tag.outputs.tag }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
