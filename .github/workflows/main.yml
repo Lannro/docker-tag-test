@@ -41,7 +41,7 @@ jobs:
       - name: Build and push
         id: docker_build       
         env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+          RELEASE_VERSION: ${{ steps.tag.outputs.tag }}
         uses: docker/build-push-action@v2
         with:
           context: ./
