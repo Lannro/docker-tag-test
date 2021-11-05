@@ -45,7 +45,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: tcinkant/docker-tag-test:$${{ steps.tag.outputs.tag }}
+          tags: tcinkant/docker-tag-test:${{ steps.tag.outputs.tag }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
